@@ -11,7 +11,7 @@ func main() {
 	fmt.Println("Sum:", sum)
 
 	// init and post statement are optional
-	// "while" loop
+	// in this situation, it is similar to a "while" loop
 	n := 1
 	for n < 10 {
 		n += n
