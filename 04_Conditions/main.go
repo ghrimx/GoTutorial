@@ -61,4 +61,105 @@ func main() {
 		"custpowc", custpowc(3, 3, 40),
 		"custpowc", custpowc(3, 3, 20),
 	)
-}
+
+	// ----- from Todd McLeod udemy course ----- //
+	fmt.Println("From Tood McLeod")
+	if true {
+		fmt.Println("001")
+	}
+	if false {
+		fmt.Println("002")
+	}
+	if !true {
+		fmt.Println("003")
+	}
+	if !false {
+		fmt.Println("004")
+	}
+	if 2 == 2 {
+		fmt.Println("005")
+	}
+	if !(2 == 2) {
+		fmt.Println("006")
+	}
+	if 2 != 2 {
+		fmt.Println("007")
+	}
+	if !(2 != 2) {
+		fmt.Println("008")
+	}
+
+	// short declaration in if statement
+	if w := 42; w == 42 {
+		fmt.Println(w == 42)
+	}
+
+	// else if
+	x := 42
+	if x == 40 {
+		fmt.Println("x is ", x)
+	} else if x == 41 {
+		fmt.Println("x is ", x)
+	} else {
+		fmt.Println("x is", x)
+	}
+
+	// switch
+	switch {
+	case false:
+		fmt.Println("case : not print")
+	case (2 == 4): // false
+		fmt.Println("case 001")
+	case (3 == 3): // true
+		fmt.Println("case 002")
+		fallthrough // continue - not recommended to use this
+	case (6 == 6): // true
+		fmt.Println("case 003")
+	default:
+		fmt.Println("Print this if all cases are false")
+	}
+
+	// switch with multiple condition
+	switch "c" {
+	case "a", "c", "d":
+		fmt.Println("a")
+	case "b":
+		fmt.Println("b")
+	default:
+		fmt.Println("default")
+	}
+
+	// default can be empty
+	switch "c" {
+	case "a", "c", "d":
+		fmt.Println("a")
+	case "b":
+		fmt.Println("b")
+	default:
+	}
+
+	// Logical operators
+	// && -> AND
+	// || -> OR
+	// !  -> NOT
+	fmt.Println("Logical operators:")
+	p := true
+	q := false
+	if p && q {
+		fmt.Println("&&")
+	}
+	if p || q {
+		fmt.Println("||")
+	}
+	if p && !q {
+		fmt.Println("!", !q)
+	}
+
+	fmt.Printf("true && true : %v \n", true && true)
+	fmt.Printf("true && false : %v \n", true && false)
+	fmt.Printf("true || true : %v \n", true || true)
+	fmt.Printf("true || false : %v \n", true || false)
+	fmt.Printf("!true: %v \n", !true)
+	fmt.Printf("!false: %v \n", !false)
+
+} // End of main

@@ -5,6 +5,25 @@ import (
 	"runtime"
 )
 
+const (
+	c1 = 42
+	c2 = 42.78
+	c3 = "Constant string"
+)
+
+type state int // creation of new variable's type for which the underlying type is int
+
+// see https://www.dannyvanheumen.nl/post/when-to-use-go-iota/ to know more about iota
+// iota should be used only for internaly reasons when the constant name is used rather its value
+const (
+	stateOpen       state = iota // value = 0
+	stateHalfClosed              // value = 1
+	stateOnOld                   // value = 2
+	stateClosed                  // value = 3
+)
+
+var currentState state
+
 // Globally declared variable (outside of main)
 var globalvariable string = "I'm a global variable"
 var x bool
@@ -77,5 +96,52 @@ func main() {
 	for i, r := range s {
 		fmt.Printf("index %d : %#x \n", i, r)
 	}
+
+	// Print constant
+	fmt.Println("Print constant")
+	fmt.Printf("%T \t %v \n", c1, c1)
+	fmt.Printf("%T \t %v \n", c2, c2)
+	fmt.Printf("%T \t %v \n", c3, c3)
+
+	// iota
+	fmt.Println("iota")
+	fmt.Printf("%v \t %T \n", currentState, currentState)
+
+	currentState = stateClosed
+
+	if currentState == stateClosed {
+		fmt.Println("App was stopped")
+		fmt.Printf("%v \n", currentState)
+	}
+
+	// bit shifting
+	fmt.Println("bit shifting")
+
+	v := 4
+	fmt.Printf("%d \t %b \n", v, v)
+
+	w := v << 1
+	fmt.Printf("%d \t %b \n", w, w)
+
+	// mixing bit shifting with iota
+	fmt.Println("mixing bit shifting with iota")
+	kb := 1024
+	mb := 1024 * kb
+	gb := 1024 * mb
+
+	fmt.Printf("%d \t\t %b \n", kb, kb)
+	fmt.Printf("%d \t %b \n", mb, mb) // binary digit shift  by 10 each time
+	fmt.Printf("%d \t %b \n", gb, gb)
+
+	const (
+		_        = iota
+		kilobyte = 1 << (iota * 10)
+		megabyte = 1 << (iota * 10)
+		gigabyte = 1 << (iota * 10)
+	)
+
+	fmt.Printf("%d \t\t %b \n", kilobyte, kilobyte)
+	fmt.Printf("%d \t %b \n", megabyte, megabyte)
+	fmt.Printf("%d \t %b \n", gigabyte, gigabyte)
 
 }
